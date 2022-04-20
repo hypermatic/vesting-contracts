@@ -20,7 +20,6 @@ contract StakingRewardsTest is DSTest {
         addr1 = cheats.addr(1);
         addr2 = cheats.addr(2);
         StakingRewards = new MockStakingRewards(address(token),address(vesting));
-        //token.transfer(address(StakingRewards),1000);
         vesting.setApprovedAddress(address(StakingRewards));
         token.approve(address(StakingRewards),100000000000000);
         StakingRewards.setReward(address(addr1), 1000);
@@ -33,18 +32,15 @@ contract StakingRewardsTest is DSTest {
     }
 
     function testSpoofRewardsClaim()public{
-        //StakingRewards.setReward(addr1, 100);
         cheats.prank(addr2);
         StakingRewards.getReward();
-
         uint256 x = vesting.getNumOfSchedules(addr2);
         assert(x == 0);
         cheats.stopPrank();
     }
 
 
-    function testRewardsClaim()public{
-        //StakingRewards.setReward(addr1, 100);
+    function testVestingSchedule()public{
         cheats.prank(addr1);
         StakingRewards.getReward();
         emit log_uint(token.balanceOf(address(vesting)));
@@ -54,12 +50,12 @@ contract StakingRewardsTest is DSTest {
         uint256 y = vesting.getScheduleTotalAmount(x-1);
         emit log_uint(y);
         emit log_address(addr1);
-        //vesting.claim(x);
         cheats.stopPrank();
     }
 
     function testVestingClaim()public{
-
+        cheats.prank(cheats.addr(4));
+        StakingRewards.mockStake(1000);
         cheats.prank(cheats.addr(4));
         StakingRewards.getReward();
         uint256 x = vesting.getNumOfSchedules(cheats.addr(4));
@@ -68,11 +64,28 @@ contract StakingRewardsTest is DSTest {
         cheats.warp(block.timestamp + 3 weeks);
         uint256 y = vesting.getScheduleTotalAmount(x-1);
         emit log_uint(y);
-        //assert(y > 0);
         assert(token.balanceOf(cheats.addr(4))==0);
         cheats.prank(cheats.addr(4));
         vesting.claim(x-1);
         assert(token.balanceOf(cheats.addr(4))>0);
 
     }
+
+    function testVestforAll()public{
+        StakingRewards.setReward(cheats.addr(5), 1000);
+        StakingRewards.setReward(cheats.addr(6), 1000);
+        cheats.prank(cheats.addr(5));
+        StakingRewards.mockStake(1000);
+        cheats.prank(cheats.addr(6));
+        StakingRewards.mockStake(1000);
+        cheats.stopPrank();
+        StakingRewards.vestForAllStaked();
+        uint256 x = vesting.getNumOfSchedules(cheats.addr(5));
+        assert(x > 0);
+        
+        
+        
+    }
+
+
 }

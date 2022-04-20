@@ -329,6 +329,43 @@
         }
       }
     },
+    "/Users/saadman/Desktop/vesting-contracts/lib/openzeppelin-contracts/contracts/utils/math/SafeMath.sol": {
+      "lastModificationDate": 1650211557626,
+      "contentHash": "e443d68643e5a5d3f430424933ba71cf",
+      "sourceName": "lib/openzeppelin-contracts/contracts/utils/math/SafeMath.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "SafeMath": {
+          "0.8.11+commit.d7f03943.Darwin.appleclang": "SafeMath.sol/SafeMath.json"
+        }
+      }
+    },
     "/Users/saadman/Desktop/vesting-contracts/src/Contract.sol": {
       "lastModificationDate": 1650210954389,
       "contentHash": "06f2ae5d0b8d24e78c123c3364d518f8",
@@ -438,8 +475,8 @@
       "artifacts": {}
     },
     "/Users/saadman/Desktop/vesting-contracts/src/MockStakingRewards.sol": {
-      "lastModificationDate": 1650212071850,
-      "contentHash": "f8d61b2a685e5d1326b5b54c515a3d3b",
+      "lastModificationDate": 1650459188243,
+      "contentHash": "c9a2366cdfa55540982a4ecd6f699913",
       "sourceName": "src/MockStakingRewards.sol",
       "solcConfig": {
         "settings": {
@@ -474,10 +511,15 @@
         "lib/openzeppelin-contracts/contracts/token/ERC20/utils/SafeERC20.sol",
         "lib/openzeppelin-contracts/contracts/utils/Address.sol",
         "lib/openzeppelin-contracts/contracts/utils/Context.sol",
+        "lib/openzeppelin-contracts/contracts/utils/math/SafeMath.sol",
         "src/IVesting.sol"
       ],
       "versionRequirement": "^0.8.11",
-      "artifacts": {}
+      "artifacts": {
+        "MockStakingRewards": {
+          "0.8.11+commit.d7f03943.Darwin.appleclang": "MockStakingRewards.sol/MockStakingRewards.json"
+        }
+      }
     },
     "/Users/saadman/Desktop/vesting-contracts/src/Vesting.sol": {
       "lastModificationDate": 1650211473305,
@@ -556,8 +598,8 @@
       }
     },
     "/Users/saadman/Desktop/vesting-contracts/src/test/StakingRewardsVesting.t.sol": {
-      "lastModificationDate": 1650212433388,
-      "contentHash": "5118fbc72617c86671fb8dba51de2dd7",
+      "lastModificationDate": 1650458961656,
+      "contentHash": "0f981d3b4159c942d949ab2ce342cc94",
       "sourceName": "src/test/StakingRewardsVesting.t.sol",
       "solcConfig": {
         "settings": {
@@ -594,10 +636,12 @@
         "lib/openzeppelin-contracts/contracts/token/ERC20/utils/SafeERC20.sol",
         "lib/openzeppelin-contracts/contracts/utils/Address.sol",
         "lib/openzeppelin-contracts/contracts/utils/Context.sol",
+        "lib/openzeppelin-contracts/contracts/utils/math/SafeMath.sol",
         "src/IVesting.sol",
         "src/MockERC20.sol",
         "src/MockStakingRewards.sol",
-        "src/Vesting.sol"
+        "src/Vesting.sol",
+        "src/test/utils/Cheats.sol"
       ],
       "versionRequirement": "=0.8.11",
       "artifacts": {
